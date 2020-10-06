@@ -27,6 +27,142 @@ namespace HW14_auto_
         By _linkToWishListPage = By.CssSelector("a[href='/profile/guest/lists/bookmarks/']");
         By _hotProduct = By.XPath("/html/body/div[1]/div[1]/div/div/div/div[3]/div/div[1]/div/div[1]/div/a");
         By _autorizedUserName = By.XPath("/html/body/header/div[1]/div/div/div[2]/div[4]/div[1]/span[2]");
+
+        By _fbLink = By.CssSelector("a[href='https://facebook.com/hotline.ua']");
+        By _instLink = By.CssSelector("a[href='https://www.instagram.com/hotline_ua/']");
+        By _youTubeLink = By.CssSelector("a[href='https://www.youtube.com/user/hotlinevideoua']");
+        By _twitterLink = By.CssSelector("a[href='https://twitter.com/hotlineua']");
+        By _searchInput = By.CssSelector("input[id='searchbox'][class='field'][placeholder='... найти товар']");
+
+
+
+        public MainPage_POM(IWebDriver driver)
+        {
+            this.chrome = driver;
+        }
+
+        public MainPage_POM ClickOnLogo()
+        {
+            chrome.FindElement(_logo).Click();
+            return this;
+        }
+
+        public MainPage_POM ChangeLocation()
+        {
+            chrome.FindElement(_location).Click();
+            return this;
+        }
+
+        public MainPage_POM ChangeToRusLanguage()
+        {
+            chrome.FindElement(_rusLanguage).Click();
+            return this;
+        }
+
+        public MainPage_POM ChangeToUkrLanguage()
+        {
+            chrome.FindElement(_ukrLanguage).Click();
+            return this;
+        }
+
+        public MainPage_POM ShowWishList()
+        {
+            chrome.FindElement(_wishesLink).Click();
+            return this;
+        }
+
+        public MainPage_POM GoToWishList()
+        {
+            chrome.FindElement(_linkToWishListPage).Click();
+            return this;
+        }
+
+        public MainPage_POM ClickOnHotProd()
+        {
+            chrome.FindElement(_hotProduct).Click();
+            return this;
+        }
+
+        public string GetHotProd()
+        {
+            string text = chrome.FindElement(_hotProduct).Text;
+            return text;
+        }
+
+        public string ProductListText()
+        {
+            string text = chrome.FindElement(_productsListName).Text;
+            return text;
+        }
+
+        public MainPage_POM NavigateToVisitedProducts()
+        {
+            chrome.FindElement(_visitedProducts).Click();
+            return this;
+        }
+
+        public string GetUserName()
+        {
+            string name = chrome.FindElement(_autorizedUserName).Text;
+            return name;
+        }
+
+        public MainPage_POM NavigateToAutorizationPage()
+        {
+            chrome.FindElement(_autorizationLink).Click();
+            return this;
+        }
+
+        public MainPage_POM ClickOnSocialMedia(string key)
+        {
+            By link = By.CssSelector("a[href='https://facebook.com/hotline.ua']");
+            switch (key)
+            {
+                case "fb":
+                    link = _fbLink;
+                    break;
+                case "inst":
+                    link = _instLink;
+                    break;
+                case "youTube":
+                    link = _youTubeLink;
+                    break;
+                case "twitter":
+                    link = _twitterLink;
+                    break;
+                default:
+                    break;
+            }
+            chrome.FindElement(link).Click();
+            return this;
+        }
+
+        public MainPage_POM SearchItemByEnter(string item)
+        {
+            chrome.FindElement(_searchInput).SendKeys(item);
+            chrome.FindElement(_searchInput).SendKeys(Keys.Enter);
+            return this;
+        }
+
+        public bool HasActiveClass(IWebElement element)
+        {
+            string classes = element.GetAttribute("class");
+            string[] classArray = classes.Split(new char[] { ' ' });
+            foreach (string item in classArray)
+            {
+                if (item == "current")
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public string LanguageColor()
+        {
+            return chrome.FindElement(_ukrLanguage).GetCssValue("color");
+
+        }
     }
 }
 
