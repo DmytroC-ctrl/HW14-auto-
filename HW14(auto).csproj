@@ -55,11 +55,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AutorizePageTests.cs" />
+    <Compile Include="AutorizePage_POM.cs" />
+    <Compile Include="CartTest.cs" />
+    <Compile Include="Cart_POM.cs" />
+    <Compile Include="ForgetPasswordPageTests.cs" />
+    <Compile Include="ForgotPassword_POM.cs" />
+    <Compile Include="MainPageTests.cs" />
+    <Compile Include="MainPage_POM.cs" />
+    <Compile Include="ProductListTests.cs" />
+    <Compile Include="ProductList_POM.cs" />
+    <Compile Include="ProductPage_POM.cs" />
+    <Compile Include="ProductPopUp_POM.cs" />
+    <Compile Include="RegistrationPageTests.cs" />
+    <Compile Include="RegistrationPage_POM.cs" />
+    <Compile Include="ShopProductList_POM.cs" />
+    <Compile Include="WishList_POM.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
